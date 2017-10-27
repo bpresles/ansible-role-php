@@ -50,7 +50,6 @@
     owner: root
     group: root
     mode: 0755
-  when: php_fpm_pool_conf_path_dir_stat.stat.islnk is not defined
 
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
