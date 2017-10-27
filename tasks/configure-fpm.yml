@@ -43,6 +43,15 @@
     force: no
   when: php_enable_php_fpm
 
+- name: Ensure the php run directory exists.
+  file:
+    path: "{{ php_fpm_run_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  when: php_fpm_pool_conf_path_dir_stat.stat.islnk is not defined
+
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
     dest: "{{ php_fpm_pool_conf_path }}"
